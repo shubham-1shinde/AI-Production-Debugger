@@ -1,0 +1,26 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Vector DB & Local storage
+app/qdrant_data/
+qdrant_data/
+*.sqlite3
+
+# Editor / System
+.vscode/
+.DS_Store
+
+# AI Debugger runtime/index metadata
+index_metadata.json

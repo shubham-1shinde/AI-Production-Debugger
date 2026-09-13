@@ -1,0 +1,43 @@
+{
+    "name": "ai-production-debugger",
+    "displayName": "AI Production Debugger",
+    "description": "AI-powered production debugging assistant for VS Code",
+    "version": "0.0.1",
+    "publisher": "ai-debugger-team",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "aiProductionDebugger.debug",
+                "title": "AI Production Debugger: Debug"
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "aiProductionDebugger.debug",
+                    "group": "navigation"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "compile": "tsc",
+        "watch": "tsc --watch"
+    },
+    "devDependencies": {
+        "@types/node": "^26.5.1",
+        "@types/vscode": "^1.85.0",
+        "esbuild": "^0.25.0",
+        "typescript": "^5.0.0"
+    }
+}

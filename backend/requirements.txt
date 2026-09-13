@@ -1,0 +1,14 @@
+langchain
+langchain-core
+langchain-google-genai
+google-generativeai
+langchain-huggingface
+huggingface-hub
+transformers
+python-dotenv
+numpy
+scikit-learn
+langchain-qdrant
+sentence-transformers   
+langchain-community 
+langchain-text-splitters
