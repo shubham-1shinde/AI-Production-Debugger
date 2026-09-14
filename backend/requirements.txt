@@ -10,5 +10,8 @@ numpy
 scikit-learn
 langchain-qdrant
 sentence-transformers   
+qdrant-client
 langchain-community 
 langchain-text-splitters
+fastapi
+uvicorn
