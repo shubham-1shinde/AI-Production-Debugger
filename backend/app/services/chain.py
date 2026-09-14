@@ -5,6 +5,7 @@ from .prompts import prompt
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 from .qdrant_service import get_documents_by_file, get_semantic_documents
+from models.debug_models import DebugResult
 
 
 def format_docs(documents):
@@ -156,7 +157,6 @@ DIAGNOSTICS:
             repo,
     }
 
-
 @lru_cache(maxsize=1)
 def get_main_chain():
 
@@ -168,8 +168,18 @@ def get_main_chain():
         )
     )
 
-    
+    structured_llm = (
+        llm.with_structured_output(
+            DebugResult
+        )
+    )
 
-    retrieval_chain = RunnableLambda(retrieve_context)
+    retrieval_chain = RunnableLambda(
+        retrieve_context
+    )
 
-    return (retrieval_chain | prompt | llm | StrOutputParser())
+    return (
+        retrieval_chain
+        | prompt
+        | structured_llm
+    )

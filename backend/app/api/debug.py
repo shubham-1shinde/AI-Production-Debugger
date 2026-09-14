@@ -51,7 +51,7 @@ def debug(request: DebugRequest):
                 ]
         }
 
-        answer = (get_main_chain().invoke(debug_input))
+        answer = (get_main_chain().invoke(debug_input).model_dump())
 
         return {
             "success": True,
