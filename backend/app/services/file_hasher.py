@@ -1,7 +1,4 @@
 import hashlib
 
-
 def get_file_hash(content: str) -> str:
-    return hashlib.sha256(
-        content.encode("utf-8")
-    ).hexdigest()
+    return hashlib.sha256(content.encode("utf-8")).hexdigest()

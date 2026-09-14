@@ -1,46 +1,29 @@
 from pathlib import Path
-
 from langchain_core.documents import Document
-from langchain_text_splitters import (
-    RecursiveCharacterTextSplitter,
-    Language
-)
+from langchain_text_splitters import RecursiveCharacterTextSplitter,Language
 
 
 LANGUAGE_MAP = {
-
     ".py": Language.PYTHON,
-
     ".js": Language.JS,
     ".jsx": Language.JS,
-
     ".ts": Language.TS,
     ".tsx": Language.TS,
-
     ".java": Language.JAVA,
-
     ".cpp": Language.CPP,
     ".c": Language.C,
-
     ".go": Language.GO,
-
     ".rs": Language.RUST,
-
     ".php": Language.PHP,
-
     ".rb": Language.RUBY,
-
     ".swift": Language.SWIFT,
-
     ".kt": Language.KOTLIN,
 }
 
 
 def get_splitter(extension: str):
 
-    language = LANGUAGE_MAP.get(
-        extension.lower()
-    )
+    language = LANGUAGE_MAP.get(extension.lower())
 
     if language:
 
@@ -56,14 +39,9 @@ def get_splitter(extension: str):
     )
 
 
-def chunk_file(
-    file_path: str,
-    content: str,
-    file_hash: str,
-    commit: str
-):
+def chunk_file(file_path: str, content: str, file_hash: str, commit: str):
+    
     extension = Path(file_path).suffix.lower()
-
     normalized_path = file_path.replace("\\", "/")
 
     document = Document(
@@ -78,6 +56,4 @@ def chunk_file(
 
     splitter = get_splitter(extension)
 
-    return splitter.split_documents(
-        [document]
-    )
+    return splitter.split_documents([document])

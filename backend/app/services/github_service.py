@@ -10,24 +10,15 @@ GITHUB_API = "https://api.github.com"
 def get_headers():
 
     token = os.getenv("GITHUB_TOKEN")
-
-    headers = {
-        "Accept": "application/vnd.github+json"
-    }
+    headers = {"Accept": "application/vnd.github+json"}
 
     if token:
-
-        headers[
-            "Authorization"
-        ] = f"Bearer {token}"
+        headers["Authorization"] = f"Bearer {token}"
 
     return headers
 
 
-def get_branch_commit(
-    repo,
-    branch
-):
+def get_branch_commit(repo, branch):
 
     url = (
         f"{GITHUB_API}/repos/"
@@ -35,29 +26,20 @@ def get_branch_commit(
     )
 
     response = requests.get(
-
         url,
-
         headers=get_headers(),
-
         timeout=30
     )
 
     response.raise_for_status()
-
     data = response.json()
 
     return data["sha"]
 
 
-def download_repository(
-    repo,
-    commit_sha
-):
+def download_repository(repo, commit_sha):
 
-    print(
-        "\nDownloading repository archive..."
-    )
+    print("\nDownloading repository archive...")
 
     url = (
         f"{GITHUB_API}/repos/"
@@ -65,33 +47,20 @@ def download_repository(
     )
 
     response = requests.get(
-
         url,
-
         headers=get_headers(),
-
         timeout=120
     )
 
     response.raise_for_status()
+    print("Repository archive downloaded.")
 
-    print(
-        "Repository archive downloaded."
-    )
-
-    return zipfile.ZipFile(
-        io.BytesIO(
-            response.content
-        )
-    )
+    return zipfile.ZipFile(io.BytesIO(response.content))
 
 
-def extract_repository_files(
-    zip_file
-):
+def extract_repository_files(zip_file):
 
     files = {}
-
     names = zip_file.namelist()
 
     for name in names:
@@ -105,10 +74,7 @@ def extract_repository_files(
         #
         # shubham-1shinde-gstassistant-xxxx/
 
-        parts = name.split(
-            "/",
-            1
-        )
+        parts = name.split("/", 1)
 
         if len(parts) != 2:
             continue
@@ -116,20 +82,11 @@ def extract_repository_files(
         relative_path = parts[1]
 
         try:
-
-            content = zip_file.read(
-                name
-            ).decode(
-                "utf-8",
-                errors="ignore"
-            )
+            content = zip_file.read(name).decode("utf-8", errors="ignore")
 
         except Exception:
-
             continue
 
-        files[
-            relative_path
-        ] = content
+        files[relative_path] = content
 
     return files

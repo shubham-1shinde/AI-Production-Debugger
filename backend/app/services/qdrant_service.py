@@ -1,48 +1,68 @@
+import re
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_qdrant import QdrantVectorStore
 from langchain_core.documents import Document
-
 from qdrant_client import QdrantClient
-from qdrant_client.models import (
-    Distance,
-    VectorParams,
-    Filter,
-    FieldCondition,
-    MatchValue,
-)
+from qdrant_client.models import Distance, VectorParams, Filter, FieldCondition, MatchValue
 
-QDRANT_PATH = "./qdrant_data"
-COLLECTION_NAME = "gstassistant_code"
+
+QDRANT_PATH = "../qdrant_data"
 EMBEDDING_SIZE = 384
 
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 
-client = QdrantClient(path=QDRANT_PATH)
+client = QdrantClient(
+    path=QDRANT_PATH
+)
 
-_vector_store = None
+# Cache vector stores by repository
+_vector_stores = {}
+
+def get_collection_name(repo: str) -> str:
+    """
+    Generate a unique Qdrant collection name for a repository.
+    """
+
+    safe_repo = re.sub(
+        r"[^a-zA-Z0-9_]",
+        "_",
+        repo
+    )
+
+    return f"repo_{safe_repo.lower()}"
 
 
-def collection_exists():
+def collection_exists(repo: str) -> bool:
+    """
+    Check whether the Qdrant collection for the repository exists.
+    """
+
+    collection_name = get_collection_name(repo)
+
     collections = client.get_collections()
 
     return any(
-        collection.name == COLLECTION_NAME
+        collection.name == collection_name
         for collection in collections.collections
     )
 
 
-def create_collection():
-    if collection_exists():
+def create_collection(repo: str):
+    """
+    Create a Qdrant collection for the repository if it does not exist.
+    """
+
+    collection_name = get_collection_name(repo)
+
+    if collection_exists(repo):
         return
 
-    print(
-        f"Creating Qdrant collection: {COLLECTION_NAME}"
-    )
+    print(f"Creating Qdrant collection: {collection_name}")
 
     client.create_collection(
-        collection_name=COLLECTION_NAME,
+        collection_name=collection_name,
         vectors_config=VectorParams(
             size=EMBEDDING_SIZE,
             distance=Distance.COSINE,
@@ -52,73 +72,84 @@ def create_collection():
     print("Qdrant collection created successfully.")
 
 
-def get_vector_store():
-    global _vector_store
+def get_vector_store(repo: str):
+    """
+    Get the Qdrant vector store for a specific repository.
+    """
 
-    if _vector_store is None:
-        create_collection()
+    collection_name = get_collection_name(repo)
 
-        _vector_store = QdrantVectorStore(
+    if repo not in _vector_stores:
+
+        create_collection(repo)
+
+        _vector_stores[repo] = QdrantVectorStore(
             client=client,
-            collection_name=COLLECTION_NAME,
+            collection_name=collection_name,
             embedding=embeddings,
         )
 
-    return _vector_store
+    return _vector_stores[repo]
 
 
-def create_store_from_documents(documents):
-    global _vector_store
+def create_store_from_documents(documents, repo: str):
+    """
+    Create a vector store and add documents for a repository.
+    """
 
     if not documents:
         return
 
-    print(
-        f"Creating Qdrant store with {len(documents)} chunks..."
-    )
+    collection_name = get_collection_name(repo)
 
-    create_collection()
+    print(f"Creating Qdrant store with {len(documents)} chunks...")
 
-    _vector_store = QdrantVectorStore(
+    create_collection(repo)
+
+    vector_store = QdrantVectorStore(
         client=client,
-        collection_name=COLLECTION_NAME,
+        collection_name=collection_name,
         embedding=embeddings,
     )
-
-    _vector_store.add_documents(
-        documents=documents
-    )
-
-    print(
-        "Qdrant vector store created successfully."
-    )
+    
+    vector_store.add_documents(documents=documents)
+    
+    _vector_stores[repo] = vector_store
+    
+    print("Qdrant vector store created successfully.")
 
 
-def add_documents(documents):
+def add_documents(documents, repo: str):
+    """
+    Add documents to the Qdrant collection belonging to the repository.
+    """
+
     if not documents:
         return
 
-    global _vector_store
-
-    if not collection_exists():
-        create_store_from_documents(documents)
+    if not collection_exists(repo):
+        create_store_from_documents(documents, repo)
         return
 
-    vector_store = get_vector_store()
+    vector_store = get_vector_store(repo)
+    vector_store.add_documents(documents=documents)
 
-    vector_store.add_documents(
-        documents=documents
-    )
-
-    print("Qdrant update completed.")
+    print(f"Qdrant update completed for: {repo}")
 
 
-def delete_file_vectors(file_path):
-    if not collection_exists():
+def delete_file_vectors(file_path: str, repo: str):
+    """
+    Delete all vectors belonging to a specific file
+    from the repository's Qdrant collection.
+    """
+
+    if not collection_exists(repo):
         return
 
+    collection_name = get_collection_name(repo)
+    
     client.delete(
-        collection_name=COLLECTION_NAME,
+        collection_name=collection_name,
         points_selector=Filter(
             must=[
                 FieldCondition(
@@ -130,30 +161,29 @@ def delete_file_vectors(file_path):
             ]
         )
     )
+    print(
+        f"Deleted vectors for {file_path} "
+        f"from {collection_name}"
+    )
 
 
-def get_documents_by_file(
-    file_path: str,
-    limit: int = 100
-):
+def get_documents_by_file(file_path: str, repo: str, limit: int = 100):
     """
-    Retrieve ALL stored chunks belonging to an exact file.
+    Retrieve all stored chunks belonging to an exact file.
     This does not use semantic similarity.
     """
 
-    if not collection_exists():
+    if not collection_exists(repo):
         return []
 
     if not file_path:
         return []
 
-    print(
-        f"\nExact file retrieval: {file_path}"
-    )
+    collection_name = get_collection_name(repo)
+    print(f"\nExact file retrieval: {file_path}")
 
     points, _ = client.scroll(
-        collection_name=COLLECTION_NAME,
-
+        collection_name=collection_name,
         scroll_filter=Filter(
             must=[
                 FieldCondition(
@@ -164,9 +194,7 @@ def get_documents_by_file(
                 )
             ]
         ),
-
         limit=limit,
-
         with_payload=True,
         with_vectors=False,
     )
@@ -176,18 +204,11 @@ def get_documents_by_file(
     for point in points:
 
         payload = point.payload or {}
-
-        page_content = payload.get(
-            "page_content",
-            ""
-        )
-
-        metadata = payload.get(
-            "metadata",
-            {}
-        )
+        page_content = payload.get("page_content", "")
+        metadata = payload.get("metadata", {})
 
         if page_content:
+
             documents.append(
                 Document(
                     page_content=page_content,
@@ -195,45 +216,41 @@ def get_documents_by_file(
                 )
             )
 
-    print(
-        f"Exact file chunks found: {len(documents)}"
-    )
-
+    print(f"Exact file chunks found: {len(documents)}")
     return documents
 
 
-def get_retriever(k=8):
-    vector_store = get_vector_store()
+def get_retriever(repo: str, k: int = 8):
+    """
+    Get a semantic retriever for a repository.
+    """
+
+    vector_store = get_vector_store(repo)
 
     return vector_store.as_retriever(
-        search_kwargs={
-            "k": k
-        }
+        search_kwargs={"k": k}
     )
 
 
-def get_semantic_documents(
-    query: str,
-    k: int = 8
-):
+def get_semantic_documents(query: str, repo: str, k: int = 8):
     """
-    Perform normal semantic vector retrieval.
+    Perform semantic vector retrieval
+    from the repository's collection.
     """
 
     if not query:
         return []
-
-    retriever = get_retriever(k)
-
-    documents = retriever.invoke(
-        query
-    )
-
+    retriever = get_retriever(repo, k)
+    documents = retriever.invoke(query)
     return documents
 
-
 def close_qdrant():
+    """
+    Close the Qdrant client.
+    """
+
     try:
         client.close()
+
     except Exception:
         pass
