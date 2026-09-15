@@ -16,43 +16,24 @@ export interface DebugResponse {
 }
 
 
-const BACKEND_URL =
-    "http://127.0.0.1:8000";
+const BACKEND_URL = "http://127.0.0.1:8000";
 
 
-export async function sendDebugRequest(
-    request: DebugRequest
-): Promise<DebugResponse> {
+export async function sendDebugRequest(request: DebugRequest): Promise<DebugResponse> {
 
-    const response =
-        await fetch(
-            `${BACKEND_URL}/api/debug`,
-            {
-                method: "POST",
+    const response = await fetch(`${BACKEND_URL}/api/debug`,
+        {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body:JSON.stringify(request)
+        }
+    );
 
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body:
-                    JSON.stringify(request)
-            }
-        );
-
-
-    const data =
-        await response.json();
-
+    const data = await response.json();
 
     if (!response.ok) {
-
-        throw new Error(
-            data.detail ||
-            "Backend request failed."
-        );
+        throw new Error(data.detail || "Backend request failed.");
     }
-
 
     return data;
 }

@@ -1240,50 +1240,34 @@ function showDebugResult(result: DebugResult) {
 </html>
     `;
 
-
     panel.webview.onDidReceiveMessage(
         message => {
-
-            if (
-                message.command ===
-                "close"
-            ) {
-
+            if (message.command === "close") {
                 panel.dispose();
-
             }
-
         },
         undefined,
         []
     );
 }
 
-function extractError(
-    answer: string
-): string {
+function extractError(answer: string): string {
 
-    const match =
-        answer.match(
-            /(?:ERROR|Error|Exception)\s*[:\-]?\s*([\s\S]*?)(?=\n\s*(?:ROOT CAUSE|Root Cause|CAUSE|Cause|SOLUTION|Solution|FIX|Fix)\s*[:\-]?)/i
-        );
+    const match = answer.match(
+        /(?:ERROR|Error|Exception)\s*[:\-]?\s*([\s\S]*?)(?=\n\s*(?:ROOT CAUSE|Root Cause|CAUSE|Cause|SOLUTION|Solution|FIX|Fix)\s*[:\-]?)/i
+    );
 
-    return match?.[1]?.trim()
-        || answer.slice(0, 500);
+    return match?.[1]?.trim() || answer.slice(0, 500);
 }
 
 
-function formatRootCause(
-    answer: string
-): string {
+function formatRootCause(answer: string): string {
 
-    const match =
-        answer.match(
-            /(?:ROOT CAUSE|Root Cause|CAUSE|Cause)\s*[:\-]?\s*([\s\S]*?)(?=\n\s*(?:EVIDENCE|Evidence|SOLUTION|Solution|FIX|Fix|VERIFICATION|Verification)\s*[:\-]?)/i
-        );
+    const match = answer.match(
+        /(?:ROOT CAUSE|Root Cause|CAUSE|Cause)\s*[:\-]?\s*([\s\S]*?)(?=\n\s*(?:EVIDENCE|Evidence|SOLUTION|Solution|FIX|Fix|VERIFICATION|Verification)\s*[:\-]?)/i
+    );
 
     if (!match) {
-
         return `
             <strong>
                 Root cause analysis
@@ -1299,17 +1283,13 @@ function formatRootCause(
 }
 
 
-function formatSolution(
-    answer: string
-): string {
+function formatSolution(answer: string): string {
 
-    const match =
-        answer.match(
-            /(?:SOLUTION|Solution|FIX|Fix|RECOMMENDED FIX|Recommended Fix)\s*[:\-]?\s*([\s\S]*?)(?=\n\s*(?:VERIFICATION|Verification|EVIDENCE|Evidence)\s*[:\-]?|$)/i
-        );
+    const match = answer.match(
+        /(?:SOLUTION|Solution|FIX|Fix|RECOMMENDED FIX|Recommended Fix)\s*[:\-]?\s*([\s\S]*?)(?=\n\s*(?:VERIFICATION|Verification|EVIDENCE|Evidence)\s*[:\-]?|$)/i
+    );
 
     if (!match) {
-
         return `
             <div class="markdown">
                 ${formatAIResponse(answer)}
@@ -1325,143 +1305,107 @@ function formatSolution(
 }
 
 
-function formatAIResponse(
-    answer: string
-): string {
+function formatAIResponse(answer: string): string {
 
-    let html =
-        escapeHtml(answer);
+    let html = escapeHtml(answer);
 
     /*
      * Code blocks
      */
 
-    html =
-        html.replace(
-            /```(\w+)?\n([\s\S]*?)```/g,
-            (_match, language, code) => {
+    html = html.replace(
+        /```(\w+)?\n([\s\S]*?)```/g,
+        (_match, language, code) => {
 
-                return `
-                    <div class="code-wrapper">
-
-                        <button
-                            class="copy-btn copy-code"
-                        >
-                            Copy
-                        </button>
-
-                        <pre><code>${code.trim()}</code></pre>
-
-                    </div>
-                `;
-            }
-        );
-
+            return `
+                <div class="code-wrapper">
+                    <button class="copy-btn copy-code">
+                        Copy
+                    </button>
+                    <pre><code>${code.trim()}</code></pre>
+                </div>
+            `;
+        }
+    );
 
     /*
      * Headings
      */
 
-    html =
-        html.replace(
-            /^### (.*)$/gm,
-            "<h3>$1</h3>"
-        );
+    html = html.replace(
+        /^### (.*)$/gm,
+        "<h3>$1</h3>"
+    );
 
-
-    html =
-        html.replace(
-            /^## (.*)$/gm,
-            "<h2>$1</h2>"
-        );
-
+    html = html.replace(
+        /^## (.*)$/gm,
+        "<h2>$1</h2>"
+    );
 
     /*
      * Bold
      */
 
-    html =
-        html.replace(
-            /\*\*(.*?)\*\*/g,
-            "<strong>$1</strong>"
-        );
-
+    html = html.replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>"
+    );
 
     /*
      * Inline code
      */
 
-    html =
-        html.replace(
-            /`([^`]+)`/g,
-            '<span class="inline-code">$1</span>'
-        );
-
+    html = html.replace(
+        /`([^`]+)`/g,
+        '<span class="inline-code">$1</span>'
+    );
 
     /*
      * Bullet points
      */
 
-    html =
-        html.replace(
-            /^\s*[-*]\s+(.*)$/gm,
-            "<li>$1</li>"
-        );
+    html = html.replace(
+        /^\s*[-*]\s+(.*)$/gm,
+        "<li>$1</li>"
+    );
 
-
-    html =
-        html.replace(
-            /(<li>.*<\/li>)/gs,
-            "<ul>$1</ul>"
-        );
-
+    html = html.replace(
+        /(<li>.*<\/li>)/gs,
+        "<ul>$1</ul>"
+    );
 
     /*
      * New lines
      */
 
-    html =
-        html.replace(
-            /\n{2,}/g,
-            "</p><p>"
-        );
+    html = html.replace(
+        /\n{2,}/g,
+        "</p><p>"
+    );
 
-
-    html =
-        "<p>" + html + "</p>";
-
+    html = "<p>" + html + "</p>";
 
     return html;
 }
 
-function formatText(
-    text: string
-): string {
+function formatText(text: string): string {
 
-    let html =
-        escapeHtml(text);
+    let html = escapeHtml(text);
 
+    html = html.replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>"
+    );
 
-    html =
-        html.replace(
-            /\*\*(.*?)\*\*/g,
-            "<strong>$1</strong>"
-        );
+    html = html.replace(
+        /`([^`]+)`/g,
+        '<span class="inline-code">$1</span>'
+    );
 
-
-    html =
-        html.replace(
-            /`([^`]+)`/g,
-            '<span class="inline-code">$1</span>'
-        );
-
-
-    html =
-        html.replace(
-            /\n/g,
-            "<br>"
-        );
-
+    html = html.replace(
+        /\n/g,
+        "<br>"
+    );
 
     return html;
 }
