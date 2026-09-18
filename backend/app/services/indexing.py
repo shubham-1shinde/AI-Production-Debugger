@@ -41,9 +41,6 @@ def index_project(repo: str, branch: str):
 
     print(f"Branch: {branch}")
 
-    # --------------------------------------------------
-    # Get latest GitHub commit
-    # --------------------------------------------------
 
     current_commit = get_branch_commit(
         repo,
@@ -52,9 +49,6 @@ def index_project(repo: str, branch: str):
 
     print(f"Current commit: {current_commit}")
 
-    # --------------------------------------------------
-    # Check whether project is already indexed
-    # --------------------------------------------------
 
     if (
         metadata.get("indexed")
@@ -75,9 +69,6 @@ def index_project(repo: str, branch: str):
             "commit": current_commit,
         }
 
-    # --------------------------------------------------
-    # Download repository
-    # --------------------------------------------------
 
     zip_file = download_repository(
         repo,
@@ -87,9 +78,6 @@ def index_project(repo: str, branch: str):
     current_files = extract_repository_files(zip_file)
     zip_file.close()
 
-    # --------------------------------------------------
-    # Keep only supported source files
-    # --------------------------------------------------
 
     current_files = {
         path: content
@@ -105,18 +93,12 @@ def index_project(repo: str, branch: str):
         f"{len(current_files)}"
     )
 
-    # --------------------------------------------------
-    # Previous metadata
-    # --------------------------------------------------
 
     old_files = metadata.get("files", {})
 
     changed_files = []
     deleted_files = []
 
-    # --------------------------------------------------
-    # Detect added / modified files
-    # --------------------------------------------------
 
     for path, content in current_files.items():
 
@@ -145,9 +127,6 @@ def index_project(repo: str, branch: str):
                 "modified"
             ))
 
-    # --------------------------------------------------
-    # Detect deleted files
-    # --------------------------------------------------
 
     for path in old_files:
         if path not in current_files:
@@ -163,9 +142,6 @@ def index_project(repo: str, branch: str):
         f"{len(deleted_files)}"
     )
 
-    # --------------------------------------------------
-    # If no source changes but commit changed
-    # --------------------------------------------------
 
     if (
         not changed_files
@@ -188,9 +164,6 @@ def index_project(repo: str, branch: str):
             "commit": current_commit,
         }
 
-    # --------------------------------------------------
-    # Delete vectors for modified/deleted files
-    # --------------------------------------------------
 
     files_to_delete = {
         path
@@ -205,9 +178,6 @@ def index_project(repo: str, branch: str):
         print(f"Removing old vectors: {path}")
         delete_file_vectors(path, repo)
 
-    # --------------------------------------------------
-    # Chunk changed files
-    # --------------------------------------------------
 
     all_chunks = []
 
@@ -228,10 +198,6 @@ def index_project(repo: str, branch: str):
         print(f"Created {len(chunks)} chunks")
         all_chunks.extend(chunks)
 
-    # --------------------------------------------------
-    # Add new embeddings to Qdrant
-    # --------------------------------------------------
-
     if all_chunks:
 
         print(
@@ -241,10 +207,6 @@ def index_project(repo: str, branch: str):
 
         add_documents(all_chunks, repo)
         print("Embeddings added to Qdrant.")
-
-    # --------------------------------------------------
-    # Update metadata
-    # --------------------------------------------------
 
     new_file_metadata = {}
 

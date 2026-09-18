@@ -64,18 +64,12 @@ def retrieve_context(data):
     diagnostics = data.get("diagnostics", [])
     repo = data.get("repo", "")
     
-    # ---------------------------------
-    # 1. EXACT ACTIVE FILE RETRIEVAL
-    # ---------------------------------
 
     exact_documents = []
 
     if active_file:
         exact_documents = (get_documents_by_file(active_file, repo))
 
-    # ---------------------------------
-    # 2. SEMANTIC RETRIEVAL
-    # ---------------------------------
 
     semantic_query = f"""
 ERROR:
@@ -102,9 +96,6 @@ DIAGNOSTICS:
         )
     )
 
-    # ---------------------------------
-    # 3. MERGE + DEDUPLICATE
-    # ---------------------------------
 
     combined_documents = []
     seen = set()
@@ -169,17 +160,9 @@ def get_main_chain():
     )
 
     structured_llm = (
-        llm.with_structured_output(
-            DebugResult
-        )
+        llm.with_structured_output(DebugResult)
     )
 
-    retrieval_chain = RunnableLambda(
-        retrieve_context
-    )
+    retrieval_chain = RunnableLambda(retrieve_context)
 
-    return (
-        retrieval_chain
-        | prompt
-        | structured_llm
-    )
+    return (retrieval_chain | prompt | structured_llm)
