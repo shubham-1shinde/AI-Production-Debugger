@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-METADATA_FILE = Path("../index_metadata.json")
+METADATA_FILE = Path(__file__).resolve().parents[2] / "index_metadata.json"
 
 def load_metadata():
     if not METADATA_FILE.exists():

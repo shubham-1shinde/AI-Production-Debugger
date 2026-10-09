@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_qdrant import QdrantVectorStore
 from langchain_core.documents import Document
@@ -6,7 +7,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, Filter, FieldCondition, MatchValue
 
 
-QDRANT_PATH = "../qdrant_data"
+QDRANT_PATH = str(Path(__file__).resolve().parents[2] / "qdrant_data")
 EMBEDDING_SIZE = 384
 
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
