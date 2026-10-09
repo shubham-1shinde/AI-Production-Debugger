@@ -11,9 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
         runDebugCommand
     );
 
-    context.subscriptions.push(
-        debugCommand
-    );
+    context.subscriptions.push(debugCommand);
 }
 
 export function deactivate() {}

@@ -2,7 +2,6 @@ from pathlib import Path
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter,Language
 
-
 LANGUAGE_MAP = {
     ".py": Language.PYTHON,
     ".js": Language.JS,
@@ -20,13 +19,11 @@ LANGUAGE_MAP = {
     ".kt": Language.KOTLIN,
 }
 
-
 def get_splitter(extension: str):
 
     language = LANGUAGE_MAP.get(extension.lower())
 
     if language:
-
         return RecursiveCharacterTextSplitter.from_language(
             language=language,
             chunk_size=1500,

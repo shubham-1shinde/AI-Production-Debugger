@@ -1,7 +1,9 @@
+# 
 from fastapi import APIRouter, HTTPException
-from models.debug_models import DebugRequest
-from services.indexing import index_project
-from services.chain import get_main_chain
+from app.models.debug_models import DebugRequest
+from app.services.indexing import index_project
+from app.services.chain import get_main_chain
+import traceback
 
 router = APIRouter()
 
@@ -9,9 +11,7 @@ router = APIRouter()
 def debug(request: DebugRequest):
 
     try:
-        print("\n==============================")
-        print("NEW DEBUG REQUEST")
-        print("==============================")
+        print("New Debug Request")
         print("\nRepository:")
         print(request.repo)
         print("\nBranch:")
@@ -63,7 +63,9 @@ def debug(request: DebugRequest):
 
     except Exception as e:
         print(f"Debug request failed: {e}")
+        traceback.print_exc()
         raise HTTPException(
             status_code=500,
             detail=str(e)
         )
+        

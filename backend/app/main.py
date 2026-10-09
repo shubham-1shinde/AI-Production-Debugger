@@ -1,6 +1,7 @@
+# application start
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from api.debug import router
+from app.api.debug import router
 
 load_dotenv()
 
@@ -9,10 +10,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-app.include_router(
-    router,
-    prefix="/api"
-)
+app.include_router(router, prefix="/api")
 
 @app.get("/health")
 def health():
@@ -20,6 +18,8 @@ def health():
         "status": "ok",
         "service": "AI Production Debugger"
     }
+
+
 
 
 

@@ -5,7 +5,7 @@ from .prompts import prompt
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 from .qdrant_service import get_documents_by_file, get_semantic_documents
-from models.debug_models import DebugResult
+from app.models.debug_models import DebugResult
 
 
 def format_docs(documents):
@@ -47,7 +47,6 @@ CODE:
 
     return "\n".join(formatted)
 
-
 def retrieve_context(data):
     """
     Retrieval pipeline:
@@ -63,13 +62,11 @@ def retrieve_context(data):
     terminal_logs = data.get("terminalLogs", "")
     diagnostics = data.get("diagnostics", [])
     repo = data.get("repo", "")
-    
 
     exact_documents = []
 
     if active_file:
         exact_documents = (get_documents_by_file(active_file, repo))
-
 
     semantic_query = f"""
 ERROR:
@@ -87,7 +84,6 @@ TERMINAL LOGS:
 DIAGNOSTICS:
 {diagnostics}
 """
-
     semantic_documents = (
         get_semantic_documents(
             semantic_query,
@@ -100,7 +96,6 @@ DIAGNOSTICS:
     combined_documents = []
     seen = set()
 
-    # Exact file gets priority.
     for doc in exact_documents:
 
         key = (
@@ -112,7 +107,6 @@ DIAGNOSTICS:
             seen.add(key)
             combined_documents.append(doc)
 
-    # Then semantic results.
     for doc in semantic_documents:
 
         key = (
@@ -124,12 +118,11 @@ DIAGNOSTICS:
             seen.add(key)
             combined_documents.append(doc)
 
-    print("\n================ RETRIEVAL ================")
+    print("\nRETRIEVAL")
     print(f"Active file: {active_file}")
     print(f"Exact chunks: {len(exact_documents)}")
     print(f"Semantic chunks: {len(semantic_documents)}")
     print(f"Final chunks: {len(combined_documents)}")
-    print("============================================\n")
 
     return {
         "repository_context":
@@ -159,10 +152,7 @@ def get_main_chain():
         )
     )
 
-    structured_llm = (
-        llm.with_structured_output(DebugResult)
-    )
-
+    structured_llm = llm.with_structured_output(DebugResult)
     retrieval_chain = RunnableLambda(retrieve_context)
 
     return (retrieval_chain | prompt | structured_llm)

@@ -15,9 +15,7 @@ export interface DebugResponse {
     detail?: string;
 }
 
-
 const BACKEND_URL = "http://127.0.0.1:8000";
-
 
 export async function sendDebugRequest(request: DebugRequest): Promise<DebugResponse> {
 
@@ -37,7 +35,6 @@ export async function sendDebugRequest(request: DebugRequest): Promise<DebugResp
 
     return data;
 }
-
 
 export interface DebugRequest {
     repo: string;

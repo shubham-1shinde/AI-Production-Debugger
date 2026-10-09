@@ -36,11 +36,9 @@ export function startTerminalMonitor( context: vscode.ExtensionContext) {
     );
 }
 
-
 export function getTerminalLogs(): string {
     return terminalLogs;
 }
-
 
 export function clearTerminalLogs(): void {
     terminalLogs = "";

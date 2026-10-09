@@ -4,9 +4,7 @@ export function getErrorMessage(): string {
 
     const logs = getTerminalLogs();
 
-    if (!logs.trim()) {
-        return "";
-    }
+    if (!logs.trim()) return "";    
     
     return logs;
 }

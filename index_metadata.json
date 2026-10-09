@@ -1,0 +1,300 @@
+{
+  "indexed": true,
+  "repo": "shubham-1shinde/gst-assistance",
+  "branch": "main",
+  "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826",
+  "files": {
+    "backend/src/api/index.js": {
+      "file_hash": "e8bd9e3896e60d47e92651a7b2b0f624e030b4224d7bd362d8dbd897d87936cb",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/app.js": {
+      "file_hash": "3d0148388d578cf009720f5317eb68a3230359ea3b1625bebe2a7532d609039c",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/accountant.controller.js": {
+      "file_hash": "52574b859f48096db46070d445b828ee6dd140b28ac4287420bc3ca7b6514394",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/business.controller.js": {
+      "file_hash": "6afc1aacd19ca8f6b6c902d6751626c5885b3b23139945f9c83e8dcce128747e",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/chat.controller.js": {
+      "file_hash": "15b5637506cb2e1ae0391acee0ff7bc3ee056ef87a8ebb58dc1f851dd993ace0",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/compliance.controller.js": {
+      "file_hash": "2ce662eb17873d0ff85918e3455565c8c3e7375096d30a4bac4d50c13b16eccb",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/dashboard.controller.js": {
+      "file_hash": "cea5fa798248c4e6351c651d3eb78860c5ddd5e2ad9b604af6271c8c59982db6",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/gst.controller.js": {
+      "file_hash": "7087e7b855dcccb926d7b90644267c9250ad910b0952c2889a47104fe5c46b9e",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/gst.download.controller.js": {
+      "file_hash": "3ea73f5878b169aa77144706411dddcf12333b8727a4b51a1faf409864070bba",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/health.controller.js": {
+      "file_hash": "2a696b4f2a91fba7014799b692dfd20f6c411490910dac58c8517bc3c4230a53",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/invoice.controller.js": {
+      "file_hash": "e02ea2b1e40d6ddf7addbaa221f4fc6fd3e6011e91c5f09c60cf2558762c58f3",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/purchase.controller.js": {
+      "file_hash": "65b2c7b56420951f84a0bed30db39ee9062bc66070617c21b046a071f6c25dca",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/controllers/user.controller.js": {
+      "file_hash": "d3333f488b94ed747322ea1526e1d477eabf3cb90de2870dbafc28943d394444",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/cron/compliance.cron.js": {
+      "file_hash": "d7e2f48fcc0427e4189d05834aa046d0d275411dbb243a4518ab1c0193711e24",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/db/database.js": {
+      "file_hash": "4e7edfc5ae2f2ac0ebb9a60f83d67bdeeb5edea2d0658dc113990815006156db",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/index.js": {
+      "file_hash": "3c64ee65e19b0935e4badfd57743c0c3c49261a3a8357b0e007c89dacaf42f1a",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/middlewares/auth.middleware.js": {
+      "file_hash": "6bd66e997aa808a75ccb0e05201ec50cdc5c8550ba86bd44f6623e0777309c49",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/models/accountant.model.js": {
+      "file_hash": "0473cae5b8fadf84d73cc6638fea0783d7fcd448bcc476db2fe03e1b70635d3b",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/models/business.model.js": {
+      "file_hash": "5e97d2f228c9066c628e62e3f5e74b8be82c643e8d9dc1fc33d69d1bfccbfc1b",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/models/chat.model.js": {
+      "file_hash": "d82a5b99adabdd90fa9fc2db98842c1d5ec1c1025e9d789cb553d586633cc241",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/models/compliance.model.js": {
+      "file_hash": "9ea42ad702e7f3c95363d5358527560cf8990acdd9ada49cfb9c879d3ba786f8",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/models/invoice.model.js": {
+      "file_hash": "1fc66dd044a7422dd338ea2782ac206d695bba06adaa53d1978ec9dfdf4bbccc",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/models/purchase.model.js": {
+      "file_hash": "5e771460f2d891b2c1bd3728e4f85b72457f7cf172678740fab9a2fce8a23282",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/models/user.model.js": {
+      "file_hash": "78f887aae4186682fe99bba75bdff80136de2863f8e7612b1383ccacbd7a380f",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/accountant.route.js": {
+      "file_hash": "c06efa6b070a734c4000114ceed9a687dbb8c0e4c481b34798438060c932255e",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/business.routes.js": {
+      "file_hash": "d40da23b2167e83689039590ea1ee0bd41c4c4698dd5366715c856bb4ee20a06",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/chat.route.js": {
+      "file_hash": "99c3ef401a053a6000e190268ac024660552de9ebc82c449c20524da0730a641",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/compliance.route.js": {
+      "file_hash": "6bbcb6870938dfaaaa10a3365f31dd0342fcad0718153746f3ce87ba99d43ec9",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/dashboard.routes.js": {
+      "file_hash": "8f198fc27050297c1f6cf5ad18836266303dbb48651164f6cb9ab1865426a38a",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/gst.route.js": {
+      "file_hash": "dc7a27e6d79aeef279afccbfec604214ccb73bd2864b438730df5635e6ffe1fa",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/health.route.js": {
+      "file_hash": "0142247e122a3ca65dbc42324dda1b99e0ed81661c964bec6887ec8826121618",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/invoice.routes.js": {
+      "file_hash": "466b24f158c770f6d0701112ff44941b4436271277a282e6291c2b17f2a82e9f",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/purchase.routes.js": {
+      "file_hash": "77865ac1edbf5a768b8b3d0852b66d46837de1b71f066ae9fbf06a5c0d7d2d5c",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/routes/user.routes.js": {
+      "file_hash": "2bbc0a4dc8f6e2d0d775d9b5a7c4e8895b948356f8b489254ceb7cb56cec94af",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/services/compliance.service.js": {
+      "file_hash": "c0bfa214e84d11083a2ee3a3383a37b1c1e78f9fd2a43d33128be39def74e365",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/services/gst.file.service.js": {
+      "file_hash": "133bf71716e3b3ef84381d78891eb3458115e61db6c0533f6304b490fc7fac4d",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/services/gst.service.js": {
+      "file_hash": "b72b0a4f32ffd2d0dbc4d01bcf55ecb4b5891c328343b17f45faa839b6844f52",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/utils/ApiError.js": {
+      "file_hash": "f28bb8ffb8e9e0630343954a6d94a97588278862543bc39771ca94af577daeb6",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/utils/ApiResponse.js": {
+      "file_hash": "80facab2ad4326c93e8789488c8e8ed31df2ff5d6460b7e69368448b69ae6dc9",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "backend/src/utils/asyncHandler.js": {
+      "file_hash": "690958ef6e0f371ef586c0acad8188f12470d1fe61ac66d593ca53e997da9d1c",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/eslint.config.js": {
+      "file_hash": "38c6066c62e803f0b512c2e18297c36cdeaccd6a1190c1cc19cc59c96c74bbc1",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/App.jsx": {
+      "file_hash": "818cd52483a492951388030622f167df61182b4033533d5caa7754538791f649",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/AuthLayout.jsx": {
+      "file_hash": "d04398fb761e937155b3267f3941f5806d64fedc5c0ffa41cd82e33e16f52474",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/Loading.jsx": {
+      "file_hash": "4267b5ad186379b7fd3e073607b4764dbe7d129ea6b8cd8efe7592de05c278de",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/dashboard/GSTOverview.jsx": {
+      "file_hash": "97318200ac39650be54277418546c9f0107a36606653de7212e235dd7a253414",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/header/Header.jsx": {
+      "file_hash": "3e30cd142995d9a8c501340d906df11fd847f442f1b6dd854b0d9995cd991b72",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/header/Logout.jsx": {
+      "file_hash": "40e68fe6cd3fde358c92a34269676c0a9fc8ea8648bf130f054d5feee240c4c9",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/header/UserDropDown.jsx": {
+      "file_hash": "b33e6b2c46db18f0340034381fc12487663072bbe1e5593e185f968ea8024f5c",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/purchaseBills/AddPurchaseBill.jsx": {
+      "file_hash": "a35a43f8858955b2c26b1fcd7f15049c1303a63e39ca464288b4db0c8c0b17fe",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/salesInvoice/CreateInvoice.jsx": {
+      "file_hash": "77e4ba2f10baf7d46ed2678536cab03dc5566af3c33f4d33612e1a7619fd2c39",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/selectBusiness/CreateNewBusiness.jsx": {
+      "file_hash": "49d624d8e76fdbc89239ab41d243796d49a3edfbe9578aacb799afa103b398a9",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/components/sidebar/Sidebar.jsx": {
+      "file_hash": "c9fdd37cfba44c1e7f2260fae0652fd79ac744679acd1cdbf43faf9ba52d7ec5",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/main.jsx": {
+      "file_hash": "499defb6b24c4eea02d254620bbc64199c09e894d867a7e9dfcb34f55b7ff7ab",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/ComplienceCalender.jsx": {
+      "file_hash": "378910aa769f5b76b2001abd5eb2289249c0c3df9630de14ec45df4165bc18a7",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/ContactAccountant.jsx": {
+      "file_hash": "0d67c943079f105f6be4e5548c83e752404ffee2ae0d20c28526badc6a8dfceb",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/Dashboard.jsx": {
+      "file_hash": "2c6fed27cf51e8a20b927aeb50a9bebf038541a068316f6069d1d4dec5bf8ec4",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/GSTSummary.jsx": {
+      "file_hash": "43fb8a69800cd2f86e68ea0600fb84049dd54ec8d1adf85c467dc5251c13a513",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/ITCtracker.jsx": {
+      "file_hash": "6a7ac30107f6a01cab23adf1a354482ce8755d06c5ffb04fa5617ecc83093c42",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/ListAccountant.jsx": {
+      "file_hash": "0646a16c67c14b98245d6aeb1c8298972cbe8e08d486462b21a395fb172bdab5",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/PurchaseBills.jsx": {
+      "file_hash": "665c4d27f16854f9dcad8d36880d10549672afed8af5171f3fc4c83a0255f4af",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/RegisterAccountant.jsx": {
+      "file_hash": "b1adc5ed1fd5b222392712a58cc9f329f51981f9b1c92ab30e260d2c38915e7e",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/SalesInvoices.jsx": {
+      "file_hash": "1e6c4ffa654dce1a36c50c1661fa2b09374004c3026ca899e8a8afda4bf8269b",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/SelectBusiness.jsx": {
+      "file_hash": "fca35ee327e8b81b406208c8b1aafc583a34bf0135c1b34b5a36c3dc3cf673c9",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/SignIn.jsx": {
+      "file_hash": "71d93eeb210ec2e2cf9a560be54c0dd2897169bd1f2cf900f9408d69f6bc5e90",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/SignUp.jsx": {
+      "file_hash": "3f5d563cf1dcbfbda1c5762a8e729cf31747b11365d90793406abf185dc858d5",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/TaxBot.jsx": {
+      "file_hash": "c19e0f4b00768550d2643ec843412303bc89adbb253349ebf517ee02e3df9d76",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/pages/ThankYouRegister.jsx": {
+      "file_hash": "2a5d3cc8749f026f599126e4ddb9746c1222b47a3879d48389ac735ce49b30b7",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/store/authSlice.js": {
+      "file_hash": "43323fc1f9205274df91b4fe16f4012ce531435c1a4bceacfe5d8221f5c8adc9",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/store/businessSlice.js": {
+      "file_hash": "60acd4a60c072b945b967f416e6e87aa12447fdefdac1a8e9b802d235ebbae0f",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/store/store.js": {
+      "file_hash": "cc53f9c19c0430c577648dde5150b6734a5d1e6014e6bdcf4a2ba1799444d427",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/utils/axios.js": {
+      "file_hash": "fa106e47d62cc5ca470af43099b1ae3e6a52186bd2c105c247c87ae96e2690ed",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/src/utils/date.js": {
+      "file_hash": "5f9c026476b3160e87785eac3f62ab41e9758fe62b93478573214ac9fcbda2ab",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    },
+    "frontend/vite.config.js": {
+      "file_hash": "1a4d04e94e991041cc1e79e0703d26e6d84a99a278ee91cc5b2dbc86223be10a",
+      "commit": "2aa5ac5d41c5d4f0d07666d203e09d008a3c3826"
+    }
+  }
+}
